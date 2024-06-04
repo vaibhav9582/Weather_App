@@ -7,12 +7,26 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 const expressSession = require("express-session");
 const passport = require("passport");
-
+const dotenv = require('dotenv');
 
 
 var app = express();
+
 const flash = require("connect-flash");
-const { default: mongoose } = require("mongoose");
+
+const mongoose = require('mongoose');
+
+main().catch(err => console.log(err));
+
+async function main() {
+  await mongoose.connect('mongodb://127.0.0.1:27017/testinendgame2');
+}
+
+// mongoose.connect(MONGOURL).then(()=>{
+//   console.log("nicee");
+// }).catch(()=>{
+//   console.log("nhi ho payega ..");
+// })
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
