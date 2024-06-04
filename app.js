@@ -8,6 +8,7 @@ var usersRouter = require('./routes/users');
 const expressSession = require('express-session');
 const passport = require('passport');
 var app = express();
+const flash = require("connect-flash");
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -18,6 +19,14 @@ app.use(expressSession({
   saveUninitialized: false,
   secret : "Vaibhav2003 Vaibhav2003"
 }))
+
+app.use(flash());
+
+app.use((req, res , next)=>{
+  res.locals.success = req.flash("success")
+  next()
+})
+
 app.use(passport.initialize());
 app.use(passport.session());
 passport.serializeUser(usersRouter.serializeUser());
