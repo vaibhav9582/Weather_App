@@ -3,7 +3,7 @@ const passport = require("passport");
 
 const plm = require("passport-local-mongoose");
 
-mongoose.connect(process.env.MONGO);
+mongoose.connect("mongodb://localhost:27017/testinendgame2");
 
 const userSchema = mongoose.Schema({
     username : String,
